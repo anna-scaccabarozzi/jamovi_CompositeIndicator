@@ -1,0 +1,93 @@
+title: Maps
+name: maps
+jus: '3.0'
+stage: 0
+compilerMode: tame 
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Statistical unit column (region/country)
+        children:
+          - type: VariablesListBox
+            name: stat_unit
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Indicators for maps
+        children:
+          - type: VariablesListBox
+            name: map_fill_variables
+            isTarget: true
+  - type: CollapseBox
+    label: Shapefile-related options
+    margin: large
+    collapsed: true
+    children:
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: shape_file_path
+           format: string
+           margin: large
+           stretchFactor: 1
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: shape_file
+           format: string
+           stretchFactor: 1
+  - type: CollapseBox
+    label: Statistical units options
+    collapsed: true
+    children:
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: stat_unit_name_shp
+           format: string
+     - type: LayoutBox
+       margin: large
+       children:
+         - type: TextBox
+           name: stat_unit_shp_to_remove
+           format: string
+           stretchFactor: 1
+  - type: CollapseBox
+    label: Saving options
+    collapsed: true
+    children:
+    - type: LayoutBox
+      margin: large
+      children:
+        - type: TextBox
+          name: saving_path
+          format: string
+          stretchFactor: 1
+    - type: LayoutBox
+      margin: large
+      children:
+        - type: TextBox
+          name: map_output_format
+          format: string
+    - type: CollapseBox
+      label: Map size
+      collapsed: true
+      children:
+      - type: LayoutBox
+        margin: large
+        children:
+         - type: TextBox
+           name: plot_width
+           format: number
+      - type: LayoutBox
+        margin: large
+        children:
+         - type: TextBox
+           name: plot_height
+           format: number

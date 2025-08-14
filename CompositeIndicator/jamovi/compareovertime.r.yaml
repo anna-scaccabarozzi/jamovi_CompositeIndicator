@@ -1,0 +1,55 @@
+---
+name:  compareovertime
+title: Compare composite indicators over time
+jrs:   '1.1'
+
+items:
+      
+    - name: getting_started
+      title: Getting started
+      type: Html    
+      
+    #- name: data_scores
+    #  title: Dataset with CIs scores
+    #  type: Preformatted
+      
+    - name: CI_table
+      title: CI scores
+      type: Table
+      rows: 0
+      columns:
+      - name: ID
+        type: integer
+      #- name: region
+      #  type: text
+      #- name: mean
+      #  type: number
+      #  format: zto
+      #- name: mean_rank
+      #  type: number
+          
+    #- name: plot
+    #  title: Composite indicator scores 
+    #  type: Image
+    #  #width:  400 #800
+    #  #height: 400 #800
+    #  renderFun: .plot
+    
+    
+    - name: composite_indicators
+      title: CompositeIndicators
+      type: Output
+      varTitle: CI
+      measureType: continuous
+      varDescription: Composite indicators results
+      items: (number_periods  * 12)
+      
+    #- name: plot
+    #  title: Map of composite indicator scores
+    #  type: Image
+    ##  width:  400
+    #  height: 300
+    #  renderFun: .plot  
+      
+
+...

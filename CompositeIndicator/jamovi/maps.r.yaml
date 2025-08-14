@@ -1,0 +1,29 @@
+---
+name:  maps
+title: Maps
+jrs:   '1.1'
+
+items:
+
+    - name: check
+      title: check
+      type: Preformatted
+
+    - name: getting_started
+      title: Getting started
+      type: Html
+      
+    - name: plots
+      title: Plots
+      type: Array
+      description: an array of plots
+      items: (map_fill_variables)
+
+      template:
+          title: $key
+          type: Image
+          width: 600
+          height: 400
+          renderFun: .plot
+
+...

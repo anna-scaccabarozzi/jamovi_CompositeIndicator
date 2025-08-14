@@ -1,0 +1,48 @@
+---
+title: What the Package Does (Title Case)
+name: CompositeIndicator
+version: 0.0.0
+jms: '1.0'
+authors:
+  - Who wrote it
+maintainer: The package maintainer <yourself@somewhere.net>
+date: '1970-01-01'
+type: R
+description: >-
+  More about what it does (maybe more than one line) Use four spaces when
+  indenting paragraphs within the Description.
+analyses:
+  - title: Mazziotta-Pareto Index
+    name: mpi
+    ns: CompositeIndicator
+    category: analyses
+    menuGroup: CompositeIndicator
+    menuTitle: Mazziotta-Pareto Index
+  - title: Generalized mean
+    name: mean
+    ns: CompositeIndicator
+    category: analyses
+    menuGroup: CompositeIndicator
+    menuTitle: Generalized mean
+  - title: Adjusted Mazziotta-Pareto Index
+    name: ampi
+    ns: CompositeIndicator
+    category: analyses
+    menuGroup: CompositeIndicator
+    menuTitle: Adjusted Mazziotta-Pareto Index
+  - title: Compare composite indicators over time
+    name: compareovertime
+    ns: CompositeIndicator
+    category: analyses
+    menuGroup: CompositeIndicator
+    menuTitle: Compare composite indicators over time
+  - title: Maps
+    name: maps
+    ns: CompositeIndicator
+    category: analyses
+    menuGroup: CompositeIndicator
+    menuTitle: Maps
+usesNative: true
+minApp: 1.0.8
+
+...

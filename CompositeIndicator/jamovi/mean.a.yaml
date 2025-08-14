@@ -1,0 +1,57 @@
+---
+name:  mean
+title: Generalized mean
+menuGroup: CompositeIndicator
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    
+    - name: data
+      type: Data
+
+    - name: indicators
+      title: Indicators names
+      type: Variables
+      
+    - name: stat_unit
+      title: Statistical unit
+      type: Variable
+
+    - name: polarity
+      title: Polarity of each indicator, comma separated (POS if positive, NEG if negative)
+      type: String
+      
+    - name: normalization
+      title: Normalization
+      type: List
+      options:
+        - title: None
+          name:  None
+        - title: '1: standardization'
+          name:  1, Standardization 
+        - title: '2: min-max'
+          name:  2, Min-max
+        - title: '3: ranking'
+          name:  3, Ranking
+      default: None
+
+    - name: p
+      title: Exponent p
+      type: List
+      options:
+        - title: '-1'
+          name:  '-1'
+        - title: '0'
+          name:  '0'
+        - title: '1'
+          name:  '1'
+        - title: '2'
+          name:  '2'
+      default: '1'
+      
+    - name: saving_path
+      title: Saving path for dataset
+      type: String
+      
+...

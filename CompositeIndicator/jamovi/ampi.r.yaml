@@ -1,0 +1,23 @@
+---
+name:  ampi
+title: Adjusted Mazziotta-Pareto Index
+jrs:   '1.1'
+
+items:
+    - name: getting_started
+      title: Getting started
+      type: Html     
+
+    - name:  data_scores
+      title: View the first 50 rows
+      type:  Preformatted
+      
+    - name:  CI_table
+      title: Adjusted Mazziotta-Pareto Index scores and ranking
+      type: Table
+      rows: 0
+      columns:
+      - name: ID
+        type: integer
+
+...

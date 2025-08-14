@@ -1,0 +1,55 @@
+---
+name:  maps
+title: Maps
+menuGroup: CompositeIndicator
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: stat_unit
+      title: Statistical unit column (region/country)
+      type: Variable
+
+    - name: map_fill_variables
+      title: Indicators for maps
+      type: Variables
+      
+    - name: shape_file_path
+      title: Path of the shape file folder
+      type: String
+    
+    - name: shape_file
+      title: Shape file name, without file extension
+      type: String
+      
+    - name: stat_unit_name_shp
+      title: Stat unit col in shp file (same info as stat unit col)
+      type: String
+    
+    - name: stat_unit_shp_to_remove
+      title: Stat units to remove from shp file (comma separated)
+      type: String
+      default: ""
+    
+    - name: saving_path
+      title: Saving path (folder)
+      type: String
+      
+    - name: map_output_format
+      title: Saving format of maps (one of eps, ps, tex, pdf, jpeg, png, tiff, bmp, svg)
+      type: String
+    
+    - name: plot_width
+      title: Width (cm) of each map in the saving path folder
+      type: Integer
+      default: 10
+      
+    - name: plot_height
+      title: Height (cm) of each map in the saving path folder
+      type: Integer 
+      default: 10
+
+...

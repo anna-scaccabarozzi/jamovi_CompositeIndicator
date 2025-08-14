@@ -1,0 +1,169 @@
+title: Compare composite indicators over time
+name: compareovertime
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Indicators names
+        children:
+          - type: VariablesListBox
+            name: indicators
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Statistical unit
+        children:
+          - type: VariablesListBox
+            name: stat_unit
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Time column (insert if data are in long format)
+        children:
+          - type: VariablesListBox
+            name: time_column_long
+            maxItemCount: 1
+            isTarget: true
+  - type: CollapseBox
+    label: Data structure options
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: is_long_format
+            format: string
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: time_column
+            format: string
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: TextBox
+            name: periods
+            format: string
+            stretchFactor: 1
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: number_periods
+            format: number
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: TextBox
+            name: polarity
+            format: string
+            stretchFactor: 1
+  - type: CollapseBox
+    label: AMPI/MPI
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: compute_ampi
+          - type: CheckBox
+            name: compute_mpi
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: TextBox
+            name: ref
+            format: string
+            stretchFactor: 1
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: penalty
+  - type: CollapseBox
+    label: Generalized mean
+    collapsed: true
+    children:
+      - type: CollapseBox
+        label: "Harmonic mean"
+        collapsed: true
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: compute_harmonic_mean
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: ComboBox
+                name: norm_harmonic_mean
+      - type: CollapseBox
+        label: Geometric mean
+        collapsed: true
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: compute_geomean
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: ComboBox
+                name: norm_geomean
+      - type: CollapseBox
+        label: Arithmetic mean
+        collapsed: true
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: compute_mean
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: ComboBox
+                name: norm_mean
+      - type: CollapseBox
+        label: Quadratic mean
+        collapsed: true
+        children:
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: CheckBox
+                name: compute_quadratic_mean
+          - type: LayoutBox
+            margin: large
+            children:
+              - type: ComboBox
+                name: norm_quadratic_mean
+  - type: CollapseBox
+    label: View options and saving options
+    collapsed: true
+    children:
+      - type: LayoutBox
+        margin: large
+        stretchFactor: 1
+        children:
+          - type: TextBox
+            name: saving_path
+            format: string
+            stretchFactor: 1
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: Output
+            name: composite_indicators

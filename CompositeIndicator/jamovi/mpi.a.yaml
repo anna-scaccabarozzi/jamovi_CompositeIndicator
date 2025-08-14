@@ -1,0 +1,36 @@
+---
+name:  mpi
+title: Mazziotta-Pareto Index
+menuGroup: CompositeIndicator
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: indicators
+      title: Indicators names
+      type: Variables
+    
+    - name: stat_unit
+      title: Statistical unit
+      type: Variable
+      
+    - name: polarity
+      title: Polarity of each indicator, comma separated (POS if positive, NEG if negative)
+      type: String
+
+    - name: penalty
+      title: Penalty
+      type: List
+      options:
+        - title: Positive
+          name:  POS
+        - title: Negative
+          name:  NEG
+          
+    - name: saving_path
+      title: Saving path for dataset
+      type: String
+...

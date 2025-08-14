@@ -1,0 +1,171 @@
+---
+name:  compareovertime
+title: Compare composite indicators over time
+menuGroup: CompositeIndicator
+version: '1.0.0'
+jas: '1.2'
+
+
+options:
+    - name: data
+      type: Data
+
+    - name: indicators
+      title: Indicators names
+      type: Variables
+      
+    - name: stat_unit
+      title: Statistical unit
+      type: Variable
+    
+      
+    - name: time_column_long
+      title: Time column (insert if data are in long format)
+      type: Variable
+      
+      
+    - name: is_long_format
+      title: Is the current dataset in long format? TRUE/FALSE
+      type: String
+      
+    - name: number_periods
+      title: Number of periods (insert if data are in wide format, leave the default otherwise)
+      type: Integer
+      default: 1
+      
+      
+    - name: time_column
+      title: Name of the time column (insert if data are in long format, leave the default otherwise)
+      type: String
+      default: 'period'
+      
+    
+    - name: periods
+      title: Periods in the dataset (numeric, sorted from oldest), comma separated
+      type: String
+      
+      
+    #- name: base_period
+    #  title: Base period (used to compute the goalposts)
+    #  type: String
+    
+    
+    - name: polarity
+      title: Polarity of each indicator, comma separated (POS if positive, NEG if negative)
+      type: String
+      
+    - name: ref
+      title: Reference values of each indic (AMPI), substitute with your indicators and their ref
+      type: String
+      default: list(ind1 = ref1, ind2=ref2, ...)
+    
+    - name: compute_ampi
+      title: Compute Adjusted Mazziotta-Pareto index
+      type: Bool
+      default: False
+      
+    - name: compute_mpi
+      title: Compute Mazziotta-Pareto index
+      type: Bool
+      default: False
+    
+    - name: penalty
+      title: Penalty to use in the MPI and AMPI
+      type: List
+      options:
+        - title: Positive
+          name:  'POS'
+        - title: Negative
+          name:  'NEG'
+    
+    - name: compute_harmonic_mean
+      title: Compute harmonic mean
+      type: Bool
+      default: False
+      
+          
+    - name: norm_harmonic_mean
+      title: Normalization method for harmonic mean ci
+      type: List
+      options:
+        - title: None
+          name:  None
+        - title: '1: standardization'
+          name:  1, Standardization 
+        - title: '2: min-max'
+          name:  2, Min-max
+        - title: '3: ranking'
+          name:  3, Ranking
+      default: None
+ 
+ 
+    - name: compute_geomean
+      title: Compute geometric mean
+      type: Bool
+      default: False
+      
+    - name: norm_geomean
+      title: Normalization method for geo mean ci
+      type: List
+      options:
+        - title: None
+          name:  None
+        - title: '1: standardization'
+          name:  1, Standardization 
+        - title: '2: min-max'
+          name:  2, Min-max
+        - title: '3: ranking'
+          name:  3, Ranking
+      default: None
+      
+      
+    - name: compute_mean
+      title: Compute arithmetic mean
+      type: Bool
+      default: False
+      
+    - name: norm_mean
+      title: Normalization method for mean ci
+      type: List
+      options:
+        - title: None
+          name:  None
+        - title: '1: standardization'
+          name:  1, Standardization 
+        - title: '2: min-max'
+          name:  2, Min-max
+        - title: '3: ranking'
+          name:  3, Ranking
+      default: None
+    
+    
+    
+    - name: compute_quadratic_mean
+      title: Compute quadratic mean
+      type: Bool
+      default: False
+
+    - name: norm_quadratic_mean
+      title: Normalization method for quadratic mean ci
+      type: List
+      options:
+        - title: None
+          name:  None
+        - title: '1: standardization'
+          name:  1, Standardization 
+        - title: '2: min-max'
+          name:  2, Min-max
+        - title: '3: ranking'
+          name:  3, Ranking
+      default: None
+      
+      
+      
+    - name: saving_path
+      title: Saving path for dataset
+      type: String
+      
+    - name: composite_indicators
+      title: Add scores and ranks columns in the jamovi 'Data' window?
+      type: Output
+...
