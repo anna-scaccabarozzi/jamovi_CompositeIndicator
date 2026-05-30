@@ -12,7 +12,7 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             polarity = NULL,
             ref = "list(ind1 = ref1, ind2=ref2, ...)",
             penalty = "POS",
-            saving_path = NULL, ...) {
+            open = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -43,9 +43,9 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "POS",
                     "NEG"),
                 default="POS")
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
+            private$..open <- jmvcore::OptionAction$new(
+                "open",
+                open)
 
             self$.addOption(private$..indicators)
             self$.addOption(private$..stat_unit)
@@ -53,7 +53,7 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..polarity)
             self$.addOption(private$..ref)
             self$.addOption(private$..penalty)
-            self$.addOption(private$..saving_path)
+            self$.addOption(private$..open)
         }),
     active = list(
         indicators = function() private$..indicators$value,
@@ -62,7 +62,7 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         polarity = function() private$..polarity$value,
         ref = function() private$..ref$value,
         penalty = function() private$..penalty$value,
-        saving_path = function() private$..saving_path$value),
+        open = function() private$..open$value),
     private = list(
         ..indicators = NA,
         ..stat_unit = NA,
@@ -70,7 +70,7 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..polarity = NA,
         ..ref = NA,
         ..penalty = NA,
-        ..saving_path = NA)
+        ..open = NA)
 )
 
 ampiResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -136,7 +136,7 @@ ampiBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param polarity .
 #' @param ref .
 #' @param penalty .
-#' @param saving_path .
+#' @param open .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
@@ -159,7 +159,7 @@ ampi <- function(
     polarity,
     ref = "list(ind1 = ref1, ind2=ref2, ...)",
     penalty = "POS",
-    saving_path) {
+    open) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("ampi requires jmvcore to be installed (restart may be required)")
@@ -182,7 +182,7 @@ ampi <- function(
         polarity = polarity,
         ref = ref,
         penalty = penalty,
-        saving_path = saving_path)
+        open = open)
 
     analysis <- ampiClass$new(
         options = options,

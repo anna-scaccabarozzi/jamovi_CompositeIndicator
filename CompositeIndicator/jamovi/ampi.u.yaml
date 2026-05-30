@@ -50,9 +50,6 @@ children:
         name: penalty
   - type: LayoutBox
     margin: large
-    stretchFactor: 1
     children:
-      - type: TextBox
-        name: saving_path
-        format: string
-        stretchFactor: 1
+      - type: ActionButton
+        name: open

@@ -148,8 +148,29 @@ ampiClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           
           
           ##### 5) export csv:  ################################################
-          utils::write.csv(mydata, self$options$saving_path)
+          #utils::write.csv(mydata, self$options$saving_path)
           #self$results$mydata_head$setContent(rownames(mydata)) 
+          
+          
+          ##### 6) open action:  ################################################
+          
+          if (self$options$open) {
+            # 1. Retrieve the option object
+            option <- self$options$option('open')
+            
+            # 2. Check for compatibility
+            if (is.null(option$perform))
+              return()
+            
+            # 3. Call $perform() with a callback
+            option$perform(function(action) {
+              # Perform logic (e.g., create a data frame)
+              list(
+                data = mydata,
+                title = 'Results from Action'
+              )
+            })
+          }
           
           
           
