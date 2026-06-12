@@ -95,7 +95,7 @@ children:
     collapsed: true
     children:
       - type: CollapseBox
-        label: "Harmonic mean"
+        label: Harmonic mean
         collapsed: true
         children:
           - type: LayoutBox
@@ -156,14 +156,11 @@ children:
     children:
       - type: LayoutBox
         margin: large
-        stretchFactor: 1
-        children:
-          - type: TextBox
-            name: saving_path
-            format: string
-            stretchFactor: 1
-      - type: LayoutBox
-        margin: large
         children:
           - type: Output
             name: composite_indicators
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ActionButton
+        name: open

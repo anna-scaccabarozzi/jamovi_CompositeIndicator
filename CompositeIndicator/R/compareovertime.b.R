@@ -552,7 +552,7 @@ compareovertimeClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cla
           
           ##### SAVE CSV  #############################################################################
           # note: no need to convert slash
-          utils::write.csv(mydata, self$options$saving_path, row.names = FALSE)
+          #utils::write.csv(mydata, self$options$saving_path, row.names = FALSE)
           
           
           ##### 5) FILL OUTPUT #######################################################################################
@@ -654,7 +654,26 @@ compareovertimeClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cla
             }
             
           }
+        
+          #####  open action:  ################################################
           
+          if (self$options$open) {
+            # 1. Retrieve the option object
+            option <- self$options$option('open')
+            
+            # 2. Check for compatibility
+            if (is.null(option$perform))
+              return()
+            
+            # 3. Call $perform() with a callback
+            option$perform(function(action) {
+              # Perform logic (e.g., create a data frame)
+              list(
+                data = mydata,
+                title = 'Results from Action'
+              )
+            })
+          }  
           
         }
         #,

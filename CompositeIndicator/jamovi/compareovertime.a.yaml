@@ -161,9 +161,13 @@ options:
       
       
       
-    - name: saving_path
-      title: Saving path for dataset
-      type: String
+    #- name: saving_path
+    #  title: Saving path for dataset
+    #  type: String
+    
+    - name: open
+      title: Open
+      type: Action
       
     - name: composite_indicators
       title: Add scores and ranks columns in the jamovi 'Data' window?

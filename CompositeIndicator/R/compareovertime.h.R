@@ -26,7 +26,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
             norm_mean = "None",
             compute_quadratic_mean = FALSE,
             norm_quadratic_mean = "None",
-            saving_path = NULL, ...) {
+            open = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -130,9 +130,9 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
                     "2, Min-max",
                     "3, Ranking"),
                 default="None")
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
+            private$..open <- jmvcore::OptionAction$new(
+                "open",
+                open)
             private$..composite_indicators <- jmvcore::OptionOutput$new(
                 "composite_indicators")
 
@@ -156,7 +156,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
             self$.addOption(private$..norm_mean)
             self$.addOption(private$..compute_quadratic_mean)
             self$.addOption(private$..norm_quadratic_mean)
-            self$.addOption(private$..saving_path)
+            self$.addOption(private$..open)
             self$.addOption(private$..composite_indicators)
         }),
     active = list(
@@ -180,7 +180,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
         norm_mean = function() private$..norm_mean$value,
         compute_quadratic_mean = function() private$..compute_quadratic_mean$value,
         norm_quadratic_mean = function() private$..norm_quadratic_mean$value,
-        saving_path = function() private$..saving_path$value,
+        open = function() private$..open$value,
         composite_indicators = function() private$..composite_indicators$value),
     private = list(
         ..indicators = NA,
@@ -203,7 +203,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
         ..norm_mean = NA,
         ..compute_quadratic_mean = NA,
         ..norm_quadratic_mean = NA,
-        ..saving_path = NA,
+        ..open = NA,
         ..composite_indicators = NA)
 )
 
@@ -288,7 +288,7 @@ compareovertimeBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
 #' @param norm_mean .
 #' @param compute_quadratic_mean .
 #' @param norm_quadratic_mean .
-#' @param saving_path .
+#' @param open .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
@@ -325,7 +325,7 @@ compareovertime <- function(
     norm_mean = "None",
     compute_quadratic_mean = FALSE,
     norm_quadratic_mean = "None",
-    saving_path) {
+    open) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("compareovertime requires jmvcore to be installed (restart may be required)")
@@ -362,7 +362,7 @@ compareovertime <- function(
         norm_mean = norm_mean,
         compute_quadratic_mean = compute_quadratic_mean,
         norm_quadratic_mean = norm_quadratic_mean,
-        saving_path = saving_path)
+        open = open)
 
     analysis <- compareovertimeClass$new(
         options = options,
