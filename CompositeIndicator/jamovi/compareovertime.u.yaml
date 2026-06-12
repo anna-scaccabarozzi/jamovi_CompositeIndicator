@@ -150,15 +150,6 @@ children:
             children:
               - type: ComboBox
                 name: norm_quadratic_mean
-  - type: CollapseBox
-    label: View options and saving options
-    collapsed: true
-    children:
-      - type: LayoutBox
-        margin: large
-        children:
-          - type: Output
-            name: composite_indicators
   - type: LayoutBox
     margin: large
     children:

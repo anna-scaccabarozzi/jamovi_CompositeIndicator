@@ -169,7 +169,7 @@ options:
       title: Open
       type: Action
       
-    - name: composite_indicators
-      title: Add scores and ranks columns in the jamovi 'Data' window?
-      type: Output
+    #- name: composite_indicators
+    #  title: Add scores and ranks columns in the jamovi 'Data' window?
+    #  type: Output
 ...

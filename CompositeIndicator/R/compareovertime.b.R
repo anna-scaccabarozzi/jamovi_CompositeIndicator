@@ -556,104 +556,104 @@ compareovertimeClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Cla
           
           
           ##### 5) FILL OUTPUT #######################################################################################
-          # note:
-          # wide: ncol = n_possible_ci * 2 * n_periods)
-          # long: ncol = n_possible_ci * 2
-          
-          # - Vec of cols of scores and ranks for each composite indicator, with no time info:
-          vector_ci_names = c('ampi', 'rank_ampi', 'mpi', 'mpi_rank', 'harmonic_mean', 'harmonic_mean_rank', 'geomean', 'geomean_rank', 'arithmetic_mean', 'arithmetic_mean_rank', 'quadratic_mean' , 'quadratic_mean_rank' )
-          # basically, vector_ci_names are all the colnames for the df in long format (if all ci are computed)
-          
-          # - Vec of bool: for each ci, if we compute it or not:
-          vector_bool <- c(self$options$compute_ampi, self$options$compute_mpi, self$options$compute_harmonic_mean, self$options$compute_geomean, self$options$compute_mean, self$options$compute_quadratic_mean)
-          
-          # - Create vector with column names of scores and rank for the methods that were not computed:
-          vector_not_computed <- c()
-          j=1
-          for (i in 1:length(vector_bool)) {  #1:6
-            if (vector_bool[i]==FALSE) {
-              vector_not_computed <- append(x=vector_not_computed, values = vector_ci_names[j:(j+1)]) 
-            }
-            j = j +2
-          }
-          
-          
-          # - Vector of all col names, computed and not computed, adding info of periods:
-          vector_ci_names_t = c() 
-          for (t in periods) {
-            t = as.character(t)
-            for (i in vector_ci_names) {
-              vector_ci_names_t = append(vector_ci_names_t, paste0(i,separator,t))
-            }
-          }
-          #vector_ci_names_t = vector_ci_names_t[order(gsub(".*?([0-9]+)$", "\\1", vector_ci_names_t))]
-          #self$results$data_scores$setContent(vector_ci_names_t)
-          
-          
-          
-          # -Vector of not computed methods, adding period to cols to have all the missing cols
-          vector_not_computed_t = c()
-          for (t in periods) {
-            t = as.character(t)
-            for (i in vector_not_computed) {
-              vector_not_computed_t = append(vector_not_computed_t, paste0(i,separator,t))
-            }
-          }
-          
-          # For columns of scores and ranks of methods not computed, fill with 0s (we cannot put a string because type column is continuous, we will get all 1s,
-          # so better fill with 0s)
-          for (i in 1:length(vector_not_computed_t)) {
-            mydata[vector_not_computed_t[i]] <- 0
-          }
-          mydata <- mydata %>%  select(self$options$stat_unit, order(gsub(".*?([0-9]+)$", "\\1", colnames(.))))
-          
-          # Filling with output depends on data format:
-          
-          # --If opened dataset is in wide format:
-          if (self$options$is_long_format == FALSE) {
-            
-            # Fill the new columns with scores and ranks: rownumbers should be the same for  mydata and self$data, fill with values:
-            if (self$options$composite_indicators && self$results$composite_indicators$isNotFilled()) {
-              # Set row numbers (may be useful if in future we will use na.omit). For the moment, we assume we do not use na.omit
-              self$results$composite_indicators$setRowNums(rownames(self$data))
-              # Set values:
-              self$results$composite_indicators$setValues(mydata %>% select(vector_ci_names_t))
-              
-              #self$results$data_scores$setContent(mydata)
-            }
-            # Set column titles
-            for (i in 1:length(vector_ci_names_t)) {
-              self$results$composite_indicators$setTitle(title = vector_ci_names_t[i], index = i)  
-            }
-          }
-          
-          
-          # --If opened dataset is in long format:
-          if (self$options$is_long_format == TRUE) {
-            
-            
-            # Fill the new columns with scores and ranks: rownumbers should be self$data (which is in long format; hence different from mydata which is in whide format), fill with values:
-            if (self$options$composite_indicators && self$results$composite_indicators$isNotFilled()) {
-              # Set row numbers (may be useful if in future we will use na.omit). For the momemt, we assume we do not use na.omit
-              self$results$composite_indicators$setRowNums(rownames(self$data))
-              # reshape long then set values:
-              self$results$composite_indicators$setValues(reshape(mydata, 
-                                                                  varying=  colnames(mydata)[! colnames(mydata) %in% self$options$stat_unit],    
-                                                                  direction="long", 
-                                                                  timevar = time_column,
-                                                                  idvar=self$options$stat_unit, 
-                                                                  sep=separator,
-                                                                  new.row.names = 1:nrow(self$data)) %>%
-                                                            select(vector_ci_names))
-            } 
-            
-            
-            # Set column titles
-            for (i in 1:length(vector_ci_names)) {
-              self$results$composite_indicators$setTitle(title = vector_ci_names[i], index = i)
-            }
-            
-          }
+          # # note:
+          # # wide: ncol = n_possible_ci * 2 * n_periods)
+          # # long: ncol = n_possible_ci * 2
+          # 
+          # # - Vec of cols of scores and ranks for each composite indicator, with no time info:
+          # vector_ci_names = c('ampi', 'rank_ampi', 'mpi', 'mpi_rank', 'harmonic_mean', 'harmonic_mean_rank', 'geomean', 'geomean_rank', 'arithmetic_mean', 'arithmetic_mean_rank', 'quadratic_mean' , 'quadratic_mean_rank' )
+          # # basically, vector_ci_names are all the colnames for the df in long format (if all ci are computed)
+          # 
+          # # - Vec of bool: for each ci, if we compute it or not:
+          # vector_bool <- c(self$options$compute_ampi, self$options$compute_mpi, self$options$compute_harmonic_mean, self$options$compute_geomean, self$options$compute_mean, self$options$compute_quadratic_mean)
+          # 
+          # # - Create vector with column names of scores and rank for the methods that were not computed:
+          # vector_not_computed <- c()
+          # j=1
+          # for (i in 1:length(vector_bool)) {  #1:6
+          #   if (vector_bool[i]==FALSE) {
+          #     vector_not_computed <- append(x=vector_not_computed, values = vector_ci_names[j:(j+1)]) 
+          #   }
+          #   j = j +2
+          # }
+          # 
+          # 
+          # # - Vector of all col names, computed and not computed, adding info of periods:
+          # vector_ci_names_t = c() 
+          # for (t in periods) {
+          #   t = as.character(t)
+          #   for (i in vector_ci_names) {
+          #     vector_ci_names_t = append(vector_ci_names_t, paste0(i,separator,t))
+          #   }
+          # }
+          # #vector_ci_names_t = vector_ci_names_t[order(gsub(".*?([0-9]+)$", "\\1", vector_ci_names_t))]
+          # #self$results$data_scores$setContent(vector_ci_names_t)
+          # 
+          # 
+          # 
+          # # -Vector of not computed methods, adding period to cols to have all the missing cols
+          # vector_not_computed_t = c()
+          # for (t in periods) {
+          #   t = as.character(t)
+          #   for (i in vector_not_computed) {
+          #     vector_not_computed_t = append(vector_not_computed_t, paste0(i,separator,t))
+          #   }
+          # }
+          # 
+          # # For columns of scores and ranks of methods not computed, fill with 0s (we cannot put a string because type column is continuous, we will get all 1s,
+          # # so better fill with 0s)
+          # for (i in 1:length(vector_not_computed_t)) {
+          #   mydata[vector_not_computed_t[i]] <- 0
+          # }
+          # mydata <- mydata %>%  select(self$options$stat_unit, order(gsub(".*?([0-9]+)$", "\\1", colnames(.))))
+          # 
+          # # Filling with output depends on data format:
+          # 
+          # # --If opened dataset is in wide format:
+          # if (self$options$is_long_format == FALSE) {
+          #   
+          #   # Fill the new columns with scores and ranks: rownumbers should be the same for  mydata and self$data, fill with values:
+          #   if (self$options$composite_indicators && self$results$composite_indicators$isNotFilled()) {
+          #     # Set row numbers (may be useful if in future we will use na.omit). For the moment, we assume we do not use na.omit
+          #     self$results$composite_indicators$setRowNums(rownames(self$data))
+          #     # Set values:
+          #     self$results$composite_indicators$setValues(mydata %>% select(vector_ci_names_t))
+          #     
+          #     #self$results$data_scores$setContent(mydata)
+          #   }
+          #   # Set column titles
+          #   for (i in 1:length(vector_ci_names_t)) {
+          #     self$results$composite_indicators$setTitle(title = vector_ci_names_t[i], index = i)  
+          #   }
+          # }
+          # 
+          # 
+          # # --If opened dataset is in long format:
+          # if (self$options$is_long_format == TRUE) {
+          #   
+          #   
+          #   # Fill the new columns with scores and ranks: rownumbers should be self$data (which is in long format; hence different from mydata which is in whide format), fill with values:
+          #   if (self$options$composite_indicators && self$results$composite_indicators$isNotFilled()) {
+          #     # Set row numbers (may be useful if in future we will use na.omit). For the momemt, we assume we do not use na.omit
+          #     self$results$composite_indicators$setRowNums(rownames(self$data))
+          #     # reshape long then set values:
+          #     self$results$composite_indicators$setValues(reshape(mydata, 
+          #                                                         varying=  colnames(mydata)[! colnames(mydata) %in% self$options$stat_unit],    
+          #                                                         direction="long", 
+          #                                                         timevar = time_column,
+          #                                                         idvar=self$options$stat_unit, 
+          #                                                         sep=separator,
+          #                                                         new.row.names = 1:nrow(self$data)) %>%
+          #                                                   select(vector_ci_names))
+          #   } 
+          #   
+          #   
+          #   # Set column titles
+          #   for (i in 1:length(vector_ci_names)) {
+          #     self$results$composite_indicators$setTitle(title = vector_ci_names[i], index = i)
+          #   }
+          #   
+          # }
         
           #####  open action:  ################################################
           
