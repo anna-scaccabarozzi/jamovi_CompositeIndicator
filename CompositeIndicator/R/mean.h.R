@@ -11,7 +11,7 @@ meanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             polarity = NULL,
             normalization = "None",
             p = "1",
-            saving_path = NULL, ...) {
+            open = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -46,16 +46,16 @@ meanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1",
                     "2"),
                 default="1")
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
+            private$..open <- jmvcore::OptionAction$new(
+                "open",
+                open)
 
             self$.addOption(private$..indicators)
             self$.addOption(private$..stat_unit)
             self$.addOption(private$..polarity)
             self$.addOption(private$..normalization)
             self$.addOption(private$..p)
-            self$.addOption(private$..saving_path)
+            self$.addOption(private$..open)
         }),
     active = list(
         indicators = function() private$..indicators$value,
@@ -63,14 +63,14 @@ meanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         polarity = function() private$..polarity$value,
         normalization = function() private$..normalization$value,
         p = function() private$..p$value,
-        saving_path = function() private$..saving_path$value),
+        open = function() private$..open$value),
     private = list(
         ..indicators = NA,
         ..stat_unit = NA,
         ..polarity = NA,
         ..normalization = NA,
         ..p = NA,
-        ..saving_path = NA)
+        ..open = NA)
 )
 
 meanResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -130,7 +130,7 @@ meanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param polarity .
 #' @param normalization .
 #' @param p .
-#' @param saving_path .
+#' @param open .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
@@ -151,7 +151,7 @@ mean <- function(
     polarity,
     normalization = "None",
     p = "1",
-    saving_path) {
+    open) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mean requires jmvcore to be installed (restart may be required)")
@@ -171,7 +171,7 @@ mean <- function(
         polarity = polarity,
         normalization = normalization,
         p = p,
-        saving_path = saving_path)
+        open = open)
 
     analysis <- meanClass$new(
         options = options,
