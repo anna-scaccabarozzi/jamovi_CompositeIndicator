@@ -95,7 +95,7 @@ children:
     collapsed: true
     children:
       - type: CollapseBox
-        label: "Harmonic mean"
+        label: Harmonic mean
         collapsed: true
         children:
           - type: LayoutBox
@@ -150,20 +150,8 @@ children:
             children:
               - type: ComboBox
                 name: norm_quadratic_mean
-  - type: CollapseBox
-    label: View options and saving options
-    collapsed: true
+  - type: LayoutBox
+    margin: large
     children:
-      - type: LayoutBox
-        margin: large
-        stretchFactor: 1
-        children:
-          - type: TextBox
-            name: saving_path
-            format: string
-            stretchFactor: 1
-      - type: LayoutBox
-        margin: large
-        children:
-          - type: Output
-            name: composite_indicators
+      - type: ActionButton
+        name: open

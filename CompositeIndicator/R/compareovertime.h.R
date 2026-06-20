@@ -26,7 +26,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
             norm_mean = "None",
             compute_quadratic_mean = FALSE,
             norm_quadratic_mean = "None",
-            saving_path = NULL, ...) {
+            open = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -130,11 +130,9 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
                     "2, Min-max",
                     "3, Ranking"),
                 default="None")
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
-            private$..composite_indicators <- jmvcore::OptionOutput$new(
-                "composite_indicators")
+            private$..open <- jmvcore::OptionAction$new(
+                "open",
+                open)
 
             self$.addOption(private$..indicators)
             self$.addOption(private$..stat_unit)
@@ -156,8 +154,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
             self$.addOption(private$..norm_mean)
             self$.addOption(private$..compute_quadratic_mean)
             self$.addOption(private$..norm_quadratic_mean)
-            self$.addOption(private$..saving_path)
-            self$.addOption(private$..composite_indicators)
+            self$.addOption(private$..open)
         }),
     active = list(
         indicators = function() private$..indicators$value,
@@ -180,8 +177,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
         norm_mean = function() private$..norm_mean$value,
         compute_quadratic_mean = function() private$..compute_quadratic_mean$value,
         norm_quadratic_mean = function() private$..norm_quadratic_mean$value,
-        saving_path = function() private$..saving_path$value,
-        composite_indicators = function() private$..composite_indicators$value),
+        open = function() private$..open$value),
     private = list(
         ..indicators = NA,
         ..stat_unit = NA,
@@ -203,8 +199,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
         ..norm_mean = NA,
         ..compute_quadratic_mean = NA,
         ..norm_quadratic_mean = NA,
-        ..saving_path = NA,
-        ..composite_indicators = NA)
+        ..open = NA)
 )
 
 compareovertimeResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -212,8 +207,7 @@ compareovertimeResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
     inherit = jmvcore::Group,
     active = list(
         getting_started = function() private$.items[["getting_started"]],
-        CI_table = function() private$.items[["CI_table"]],
-        composite_indicators = function() private$.items[["composite_indicators"]]),
+        CI_table = function() private$.items[["CI_table"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -233,15 +227,7 @@ compareovertimeResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
                 columns=list(
                     list(
                         `name`="ID", 
-                        `type`="integer"))))
-            self$add(jmvcore::Output$new(
-                options=options,
-                name="composite_indicators",
-                title="CompositeIndicators",
-                varTitle="CI",
-                measureType="continuous",
-                varDescription="Composite indicators results",
-                items="(number_periods  * 12)"))}))
+                        `type`="integer"))))}))
 
 compareovertimeBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "compareovertimeBase",
@@ -261,7 +247,7 @@ compareovertimeBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
                 pause = NULL,
                 completeWhenFilled = FALSE,
                 requiresMissings = FALSE,
-                weightsSupport = 'none')
+                weightsSupport = 'auto')
         }))
 
 #' Compare composite indicators over time
@@ -288,12 +274,11 @@ compareovertimeBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
 #' @param norm_mean .
 #' @param compute_quadratic_mean .
 #' @param norm_quadratic_mean .
-#' @param saving_path .
+#' @param open .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$CI_table} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$composite_indicators} \tab \tab \tab \tab \tab an output \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -325,7 +310,7 @@ compareovertime <- function(
     norm_mean = "None",
     compute_quadratic_mean = FALSE,
     norm_quadratic_mean = "None",
-    saving_path) {
+    open) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("compareovertime requires jmvcore to be installed (restart may be required)")
@@ -362,7 +347,7 @@ compareovertime <- function(
         norm_mean = norm_mean,
         compute_quadratic_mean = compute_quadratic_mean,
         norm_quadratic_mean = norm_quadratic_mean,
-        saving_path = saving_path)
+        open = open)
 
     analysis <- compareovertimeClass$new(
         options = options,

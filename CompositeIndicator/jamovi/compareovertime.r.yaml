@@ -36,13 +36,13 @@ items:
     #  renderFun: .plot
     
     
-    - name: composite_indicators
-      title: CompositeIndicators
-      type: Output
-      varTitle: CI
-      measureType: continuous
-      varDescription: Composite indicators results
-      items: (number_periods  * 12)
+    # - name: composite_indicators
+    #   title: CompositeIndicators
+    #   type: Output
+    #   varTitle: CI
+    #   measureType: continuous
+    #   varDescription: Composite indicators results
+    #   items: (number_periods  * 12)
       
     #- name: plot
     #  title: Map of composite indicator scores

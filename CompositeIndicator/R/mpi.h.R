@@ -10,7 +10,7 @@ mpiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             stat_unit = NULL,
             polarity = NULL,
             penalty = NULL,
-            saving_path = NULL, ...) {
+            open = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -33,28 +33,28 @@ mpiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "POS",
                     "NEG"))
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
+            private$..open <- jmvcore::OptionAction$new(
+                "open",
+                open)
 
             self$.addOption(private$..indicators)
             self$.addOption(private$..stat_unit)
             self$.addOption(private$..polarity)
             self$.addOption(private$..penalty)
-            self$.addOption(private$..saving_path)
+            self$.addOption(private$..open)
         }),
     active = list(
         indicators = function() private$..indicators$value,
         stat_unit = function() private$..stat_unit$value,
         polarity = function() private$..polarity$value,
         penalty = function() private$..penalty$value,
-        saving_path = function() private$..saving_path$value),
+        open = function() private$..open$value),
     private = list(
         ..indicators = NA,
         ..stat_unit = NA,
         ..polarity = NA,
         ..penalty = NA,
-        ..saving_path = NA)
+        ..open = NA)
 )
 
 mpiResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -118,7 +118,7 @@ mpiBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param stat_unit .
 #' @param polarity .
 #' @param penalty .
-#' @param saving_path .
+#' @param open .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
@@ -139,7 +139,7 @@ mpi <- function(
     stat_unit,
     polarity,
     penalty,
-    saving_path) {
+    open) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("mpi requires jmvcore to be installed (restart may be required)")
@@ -158,7 +158,7 @@ mpi <- function(
         stat_unit = stat_unit,
         polarity = polarity,
         penalty = penalty,
-        saving_path = saving_path)
+        open = open)
 
     analysis <- mpiClass$new(
         options = options,

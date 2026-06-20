@@ -30,7 +30,12 @@ options:
         - title: Negative
           name:  NEG
           
-    - name: saving_path
-      title: Saving path for dataset
-      type: String
+   # - name: saving_path
+  #    title: Saving path for dataset
+  #    type: String
+  
+        
+    - name: open
+      title: Open
+      type: Action
 ...

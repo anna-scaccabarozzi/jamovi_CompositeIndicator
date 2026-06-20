@@ -50,8 +50,12 @@ options:
           name:  '2'
       default: '1'
       
-    - name: saving_path
-      title: Saving path for dataset
-      type: String
+    #- name: saving_path
+    #  title: Saving path for dataset
+    #  type: String
+    
+    - name: open
+      title: Open
+      type: Action
       
 ...
