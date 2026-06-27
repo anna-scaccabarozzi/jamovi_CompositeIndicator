@@ -109,15 +109,16 @@ mpiClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     
           
           ###### 2) Compute mpi scores #########################################
-          
+  
           # normalize data with standardization
           data_norm = normalise_ci(self$data,
-                                   which(names(self$data)%in%names(self$data)[sapply(self$data, is.numeric)]),  #individual_indicators_indexes, the numeric columns of self$data
+                                   which(names(self$data)%in%self$options$indicators), #which(names(self$data)%in%names(self$data)[sapply(self$data, is.numeric)]),  #individual_indicators_indexes, the numeric columns of self$data
                                    polarity_vec,
                                    method=1,z.mean=100, z.std=10) 
           # compute scores
           results <- ci_mpi_MODIFIED1(x=data_norm$ci_norm,
-                                      indic_col =  match(self$options$indicators, colnames(data_norm$ci_norm)), penalty= self$options$penalty
+                                      indic_col =  match(self$options$indicators, colnames(data_norm$ci_norm)),
+                                      penalty= self$options$penalty
           )
 
           
