@@ -73,7 +73,7 @@ meanClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           
           if (as.numeric(self$options$p)==0) {
             results <- Compind::ci_geom_gen(x=data_norm,
-                                            indic_col=which(names(self$data)%in%self$options$indicators),
+                                            indic_col=which(names(data_norm)%in%self$options$indicators),
                                             meth='EQUAL')
             
             mydata <- data_norm %>%
@@ -83,7 +83,7 @@ meanClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           } else {
             
             results <- Compind::ci_generalized_mean(x=data_norm,
-                                                    indic_col=which(names(self$data)%in%self$options$indicators),
+                                                    indic_col=which(names(data_norm)%in%self$options$indicators),
                                                     p = as.numeric(self$options$p),
                                                     na.rm = FALSE)
             
