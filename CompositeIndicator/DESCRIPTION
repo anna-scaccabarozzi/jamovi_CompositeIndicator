@@ -16,3 +16,5 @@ Imports: jmvcore (>= 0.8.5), R6,
   	utils,
   	rlist,
 	ggplot2,
+	rnaturalearth,
+	rnaturalearthdata

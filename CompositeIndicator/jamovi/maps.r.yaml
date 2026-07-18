@@ -5,13 +5,10 @@ jrs:   '1.1'
 
 items:
 
-    - name: check
-      title: check
-      type: Preformatted
-
     - name: getting_started
       title: Getting started
       type: Html
+    
       
     - name: plots
       title: Plots

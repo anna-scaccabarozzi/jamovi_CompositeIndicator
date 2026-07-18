@@ -2,7 +2,7 @@ title: Maps
 name: maps
 jus: '3.0'
 stage: 0
-compilerMode: tame 
+compilerMode: tame
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -21,73 +21,27 @@ children:
           - type: VariablesListBox
             name: map_fill_variables
             isTarget: true
-  - type: CollapseBox
-    label: Shapefile-related options
+  - type: LayoutBox
     margin: large
-    collapsed: true
     children:
-     - type: LayoutBox
-       margin: large
-       children:
-         - type: TextBox
-           name: shape_file_path
-           format: string
-           margin: large
-           stretchFactor: 1
-     - type: LayoutBox
-       margin: large
-       children:
-         - type: TextBox
-           name: shape_file
-           format: string
-           stretchFactor: 1
-  - type: CollapseBox
-    label: Statistical units options
-    collapsed: true
+      - type: TextBox
+        name: latitude_min
+        format: number
+  - type: LayoutBox
+    margin: large
     children:
-     - type: LayoutBox
-       margin: large
-       children:
-         - type: TextBox
-           name: stat_unit_name_shp
-           format: string
-     - type: LayoutBox
-       margin: large
-       children:
-         - type: TextBox
-           name: stat_unit_shp_to_remove
-           format: string
-           stretchFactor: 1
-  - type: CollapseBox
-    label: Saving options
-    collapsed: true
+      - type: TextBox
+        name: latitude_max
+        format: number
+  - type: LayoutBox
+    margin: large
     children:
-    - type: LayoutBox
-      margin: large
-      children:
-        - type: TextBox
-          name: saving_path
-          format: string
-          stretchFactor: 1
-    - type: LayoutBox
-      margin: large
-      children:
-        - type: TextBox
-          name: map_output_format
-          format: string
-    - type: CollapseBox
-      label: Map size
-      collapsed: true
-      children:
-      - type: LayoutBox
-        margin: large
-        children:
-         - type: TextBox
-           name: plot_width
-           format: number
-      - type: LayoutBox
-        margin: large
-        children:
-         - type: TextBox
-           name: plot_height
-           format: number
+      - type: TextBox
+        name: longitude_min
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: longitude_max
+        format: number

@@ -8,14 +8,10 @@ mapsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         initialize = function(
             stat_unit = NULL,
             map_fill_variables = NULL,
-            shape_file_path = NULL,
-            shape_file = NULL,
-            stat_unit_name_shp = NULL,
-            stat_unit_shp_to_remove = "",
-            saving_path = NULL,
-            map_output_format = NULL,
-            plot_width = 10,
-            plot_height = 10, ...) {
+            latitude_min = NULL,
+            latitude_max = NULL,
+            longitude_min = NULL,
+            longitude_max = NULL, ...) {
 
             super$initialize(
                 package="CompositeIndicator",
@@ -29,74 +25,46 @@ mapsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..map_fill_variables <- jmvcore::OptionVariables$new(
                 "map_fill_variables",
                 map_fill_variables)
-            private$..shape_file_path <- jmvcore::OptionString$new(
-                "shape_file_path",
-                shape_file_path)
-            private$..shape_file <- jmvcore::OptionString$new(
-                "shape_file",
-                shape_file)
-            private$..stat_unit_name_shp <- jmvcore::OptionString$new(
-                "stat_unit_name_shp",
-                stat_unit_name_shp)
-            private$..stat_unit_shp_to_remove <- jmvcore::OptionString$new(
-                "stat_unit_shp_to_remove",
-                stat_unit_shp_to_remove,
-                default="")
-            private$..saving_path <- jmvcore::OptionString$new(
-                "saving_path",
-                saving_path)
-            private$..map_output_format <- jmvcore::OptionString$new(
-                "map_output_format",
-                map_output_format)
-            private$..plot_width <- jmvcore::OptionInteger$new(
-                "plot_width",
-                plot_width,
-                default=10)
-            private$..plot_height <- jmvcore::OptionInteger$new(
-                "plot_height",
-                plot_height,
-                default=10)
+            private$..latitude_min <- jmvcore::OptionNumber$new(
+                "latitude_min",
+                latitude_min)
+            private$..latitude_max <- jmvcore::OptionNumber$new(
+                "latitude_max",
+                latitude_max)
+            private$..longitude_min <- jmvcore::OptionNumber$new(
+                "longitude_min",
+                longitude_min)
+            private$..longitude_max <- jmvcore::OptionNumber$new(
+                "longitude_max",
+                longitude_max)
 
             self$.addOption(private$..stat_unit)
             self$.addOption(private$..map_fill_variables)
-            self$.addOption(private$..shape_file_path)
-            self$.addOption(private$..shape_file)
-            self$.addOption(private$..stat_unit_name_shp)
-            self$.addOption(private$..stat_unit_shp_to_remove)
-            self$.addOption(private$..saving_path)
-            self$.addOption(private$..map_output_format)
-            self$.addOption(private$..plot_width)
-            self$.addOption(private$..plot_height)
+            self$.addOption(private$..latitude_min)
+            self$.addOption(private$..latitude_max)
+            self$.addOption(private$..longitude_min)
+            self$.addOption(private$..longitude_max)
         }),
     active = list(
         stat_unit = function() private$..stat_unit$value,
         map_fill_variables = function() private$..map_fill_variables$value,
-        shape_file_path = function() private$..shape_file_path$value,
-        shape_file = function() private$..shape_file$value,
-        stat_unit_name_shp = function() private$..stat_unit_name_shp$value,
-        stat_unit_shp_to_remove = function() private$..stat_unit_shp_to_remove$value,
-        saving_path = function() private$..saving_path$value,
-        map_output_format = function() private$..map_output_format$value,
-        plot_width = function() private$..plot_width$value,
-        plot_height = function() private$..plot_height$value),
+        latitude_min = function() private$..latitude_min$value,
+        latitude_max = function() private$..latitude_max$value,
+        longitude_min = function() private$..longitude_min$value,
+        longitude_max = function() private$..longitude_max$value),
     private = list(
         ..stat_unit = NA,
         ..map_fill_variables = NA,
-        ..shape_file_path = NA,
-        ..shape_file = NA,
-        ..stat_unit_name_shp = NA,
-        ..stat_unit_shp_to_remove = NA,
-        ..saving_path = NA,
-        ..map_output_format = NA,
-        ..plot_width = NA,
-        ..plot_height = NA)
+        ..latitude_min = NA,
+        ..latitude_max = NA,
+        ..longitude_min = NA,
+        ..longitude_max = NA)
 )
 
 mapsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "mapsResults",
     inherit = jmvcore::Group,
     active = list(
-        check = function() private$.items[["check"]],
         getting_started = function() private$.items[["getting_started"]],
         plots = function() private$.items[["plots"]]),
     private = list(),
@@ -106,10 +74,6 @@ mapsResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="",
                 title="Maps")
-            self$add(jmvcore::Preformatted$new(
-                options=options,
-                name="check",
-                title="check"))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="getting_started",
@@ -153,17 +117,12 @@ mapsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param data .
 #' @param stat_unit .
 #' @param map_fill_variables .
-#' @param shape_file_path .
-#' @param shape_file .
-#' @param stat_unit_name_shp .
-#' @param stat_unit_shp_to_remove .
-#' @param saving_path .
-#' @param map_output_format .
-#' @param plot_width .
-#' @param plot_height .
+#' @param latitude_min .
+#' @param latitude_max .
+#' @param longitude_min .
+#' @param longitude_max .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$check} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$getting_started} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$plots} \tab \tab \tab \tab \tab an array of plots \cr
 #' }
@@ -173,14 +132,10 @@ maps <- function(
     data,
     stat_unit,
     map_fill_variables,
-    shape_file_path,
-    shape_file,
-    stat_unit_name_shp,
-    stat_unit_shp_to_remove = "",
-    saving_path,
-    map_output_format,
-    plot_width = 10,
-    plot_height = 10) {
+    latitude_min,
+    latitude_max,
+    longitude_min,
+    longitude_max) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("maps requires jmvcore to be installed (restart may be required)")
@@ -197,14 +152,10 @@ maps <- function(
     options <- mapsOptions$new(
         stat_unit = stat_unit,
         map_fill_variables = map_fill_variables,
-        shape_file_path = shape_file_path,
-        shape_file = shape_file,
-        stat_unit_name_shp = stat_unit_name_shp,
-        stat_unit_shp_to_remove = stat_unit_shp_to_remove,
-        saving_path = saving_path,
-        map_output_format = map_output_format,
-        plot_width = plot_width,
-        plot_height = plot_height)
+        latitude_min = latitude_min,
+        latitude_max = latitude_max,
+        longitude_min = longitude_min,
+        longitude_max = longitude_max)
 
     analysis <- mapsClass$new(
         options = options,
