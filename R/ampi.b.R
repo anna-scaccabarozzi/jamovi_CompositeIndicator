@@ -29,7 +29,7 @@ ampiClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                     Your input data should be in long format. They should contain the columns of the individual indicators
                                                     that you want to combine, <b>Indicators names</b>, the column that identifies your statistical units, <b>Statistical unit</b>,
                                                     and the column which specifies the time period for each observation: <b>Time column</b>.<br>
-                                                    If your data are in wide format, I advise you to load the module jReshape from the jamovi library and to use it to reshape
+                                                    If your data are in wide format, I advise you to reshape them. For instance, you could load the module jReshape from the jamovi library and use it to reshape
                                                     your dataset.<br>
                                                     No missing data should be included in your dataset.<br>
                                                     <br>
@@ -40,9 +40,6 @@ ampiClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                     Your input should have the following structure: list(empl=50, inc=60).<br>
                                                     <br>
                                                     Then you select the <b>Penalty</b> of your composite indicator: Positive or Negative.<br>
-                                                    <br>
-                                                    Finally, you can specifiy the <b>Saving path</b> where the output dataset will be saved. The path should end with the filename you choose
-                                                    for the final dataset, and it should end with the .csv extension.<br>
                                                     </div")
           
           ##### 2) parameters ###########################################
