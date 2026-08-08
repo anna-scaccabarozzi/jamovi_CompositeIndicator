@@ -14,7 +14,7 @@ mapsOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             longitude_max = NULL, ...) {
 
             super$initialize(
-                package="CompositeIndicator",
+                package="CI",
                 name="maps",
                 requiresData=TRUE,
                 ...)
@@ -96,7 +96,7 @@ mapsBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "CompositeIndicator",
+                package = "CI",
                 name = "maps",
                 version = c(1,0,0),
                 options = options,

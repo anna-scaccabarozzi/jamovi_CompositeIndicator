@@ -15,7 +15,7 @@ ampiOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             open = NULL, ...) {
 
             super$initialize(
-                package="CompositeIndicator",
+                package="CI",
                 name="ampi",
                 requiresData=TRUE,
                 ...)
@@ -111,7 +111,7 @@ ampiBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "CompositeIndicator",
+                package = "CI",
                 name = "ampi",
                 version = c(1,0,0),
                 options = options,

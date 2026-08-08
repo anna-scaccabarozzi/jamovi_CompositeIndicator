@@ -1,6 +1,6 @@
 ---
-title: What the Package Does (Title Case)
-name: CompositeIndicator
+title: CI - Tools for building Composite Indicators in jamovi
+name: CI
 version: 0.0.0
 jms: '1.0'
 authors:
@@ -14,33 +14,33 @@ description: >-
 analyses:
   - title: Mazziotta-Pareto Index
     name: mpi
-    ns: CompositeIndicator
+    ns: CI
     category: analyses
-    menuGroup: CompositeIndicator
+    menuGroup: CI
     menuTitle: Mazziotta-Pareto Index
   - title: Generalized mean
     name: mean
-    ns: CompositeIndicator
+    ns: CI
     category: analyses
-    menuGroup: CompositeIndicator
+    menuGroup: CI
     menuTitle: Generalized mean
   - title: Adjusted Mazziotta-Pareto Index
     name: ampi
-    ns: CompositeIndicator
+    ns: CI
     category: analyses
-    menuGroup: CompositeIndicator
+    menuGroup: CI
     menuTitle: Adjusted Mazziotta-Pareto Index
   - title: Compare composite indicators over time
     name: compareovertime
-    ns: CompositeIndicator
+    ns: CI
     category: analyses
-    menuGroup: CompositeIndicator
+    menuGroup: CI
     menuTitle: Compare composite indicators over time
   - title: Maps
     name: maps
-    ns: CompositeIndicator
+    ns: CI
     category: analyses
-    menuGroup: CompositeIndicator
+    menuGroup: CI
     menuTitle: Maps
 usesNative: true
 minApp: 1.0.8

@@ -1,7 +1,7 @@
 ---
 name:  compareovertime
 title: Compare composite indicators over time
-menuGroup: CompositeIndicator
+menuGroup: CI
 version: '1.0.0'
 jas: '1.2'
 

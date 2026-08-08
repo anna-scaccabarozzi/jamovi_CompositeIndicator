@@ -14,7 +14,7 @@ meanOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             open = NULL, ...) {
 
             super$initialize(
-                package="CompositeIndicator",
+                package="CI",
                 name="mean",
                 requiresData=TRUE,
                 ...)
@@ -106,7 +106,7 @@ meanBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "CompositeIndicator",
+                package = "CI",
                 name = "mean",
                 version = c(1,0,0),
                 options = options,

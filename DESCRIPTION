@@ -1,6 +1,6 @@
-Package: CompositeIndicator
+Package: CI
 Type: Package
-Title: What the Package Does (Title Case)
+Title: CI - Tools for building Composite Indicators in jamovi
 Version: 0.0.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>

@@ -29,7 +29,7 @@ compareovertimeOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6C
             open = NULL, ...) {
 
             super$initialize(
-                package="CompositeIndicator",
+                package="CI",
                 name="compareovertime",
                 requiresData=TRUE,
                 ...)
@@ -235,7 +235,7 @@ compareovertimeBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Clas
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = "CompositeIndicator",
+                package = "CI",
                 name = "compareovertime",
                 version = c(1,0,0),
                 options = options,
